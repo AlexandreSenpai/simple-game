@@ -21,7 +21,7 @@ class Game{
     }
 
     notify_all = (event) =>{
-        console.log('notifying', this.observers.entities.length)
+        //console.log('notifying', this.observers.entities.length)
         for(const observer of this.observers.entities){
             observer(event)
         }
@@ -38,7 +38,7 @@ class Game{
     }
 
     spawn_entities(){       
-        for(var i = 0; i < 10; i++){
+        for(var i = 0; i < 1; i++){
             var color = Math.ceil(Math.random()*5)
             this.entities.push(new User(Math.floor(Math.random()*300), Math.floor(Math.random()*400), 30, 30, '#'+color+color+color+color+color+color))
         }
@@ -46,10 +46,13 @@ class Game{
 
     update(){
         this.create(this.player)
+        this.create(new Object(0, this.canvas.height - 30, this.canvas.width, 30, '#222'))
         for(const entity of this.entities){
             this.create(entity)
             this.player.is_colliding(entity)
         }
+        
+        //this.player.y += this.player.gravity
     }
 }
 
